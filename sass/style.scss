@@ -1,0 +1,128 @@
+/* VARIABLES */
+@import './colors';
+
+// $heading-text-size: clamp(1.4rem, 1vw, 3rem);
+
+/* SITE */
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+}
+
+html {
+	font-size: 62.5%;
+}
+
+body {
+	font-family: 'League Spartan', sans-serif;
+	min-height: 100vh;
+	background-color: $light_grayish_cyan-background;
+}
+
+/* HEADER */
+
+header {
+	height: 15.5rem;
+	background-image: url(../images/bg-header-mobile.svg);
+	background-color: $desaturated_dark_cyan;
+}
+
+/* SECTION */
+
+.filter-box {
+	font-size: 1.5rem;
+	position: relative;
+	top: -3rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 2rem;
+	margin: 0 2rem;
+	padding: 2rem;
+	border-radius: 0.5rem;
+	background-color: white;
+	box-shadow: 0px 10px 40px -20px $desaturated_dark_cyan;
+}
+
+.filter {
+	display: flex;
+	flex-flow: wrap;
+	gap: 2rem;
+
+	&__language {
+		display: flex;
+		align-items: center;
+		border-radius: 0.5rem;
+		background-color: $light_grayish_cyan-filter-tablets;
+		overflow: hidden;
+
+		&--text {
+			font-weight: 700;
+			padding: 0 1rem;
+			color: $desaturated_dark_cyan;
+		}
+
+		&--icon {
+			display: inline-block;
+			height: 100%;
+			padding: 1rem;
+			background-color: $desaturated_dark_cyan;
+			cursor: pointer;
+			transition: background-color 0.5s;
+		}
+
+		&--icon:hover {
+			background-color: black;
+		}
+	}
+}
+
+.clear {
+	&__btn {
+		font-family: 'League Spartan', sans-serif;
+		font-size: 1.5rem;
+		font-weight: 700;
+		padding: 0.6rem;
+		border: none;
+		background: none;
+		color: $dark_grayish_cyan;
+		cursor: pointer;
+		transition: color 0.5s;
+	}
+
+	&__btn::after {
+		content: '';
+		display: block;
+		width: 0;
+		height: 2px;
+		background-color: $desaturated_dark_cyan;
+		transition: width 0.5s;
+	}
+
+	&__btn:hover {
+		color: $desaturated_dark_cyan;
+	}
+
+	&__btn:hover::after {
+		width: 100%;
+	}
+}
+
+.hidden {
+	display: none;
+}
+
+/* FOOTER */
+
+footer {
+	text-align: center;
+}
+
+/* MEDIA QUERIES */
+
+@media (min-width: 500px) {
+}
