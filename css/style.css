@@ -16,20 +16,29 @@ html {
 
 body {
   font-family: "League Spartan", sans-serif;
+  font-size: clamp(1.5rem, 2vw, 1.7rem);
   min-height: 100vh;
   background-color: hsl(180deg, 52%, 96%);
+}
+
+button {
+  font-family: "League Spartan", sans-serif;
+  font-size: clamp(1.5rem, 2vw, 1.7rem);
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
 }
 
 /* HEADER */
 header {
   height: 15.5rem;
   background-image: url(../images/bg-header-mobile.svg);
+  background-size: cover;
   background-color: hsl(180deg, 29%, 50%);
 }
 
 /* SECTION */
 .filter-box {
-  font-size: 1.5rem;
   position: relative;
   top: -3rem;
   display: -webkit-box;
@@ -42,6 +51,7 @@ header {
       -ms-flex-align: center;
           align-items: center;
   gap: 2rem;
+  max-width: 111rem;
   margin: 0 2rem;
   padding: 2rem;
   border-radius: 0.5rem;
@@ -78,26 +88,25 @@ header {
   display: inline-block;
   height: 100%;
   padding: 1rem;
+  border: none;
   background-color: hsl(180deg, 29%, 50%);
   cursor: pointer;
-  -webkit-transition: background-color 0.5s;
-  transition: background-color 0.5s;
+  -webkit-transition: background-color 0.3s;
+  transition: background-color 0.3s;
+}
+.filter__language--icon img {
+  display: block;
 }
 .filter__language--icon:hover {
   background-color: black;
 }
 
 .clear__btn {
-  font-family: "League Spartan", sans-serif;
-  font-size: 1.5rem;
-  font-weight: 700;
   padding: 0.6rem;
-  border: none;
   background: none;
   color: hsl(180deg, 8%, 52%);
-  cursor: pointer;
-  -webkit-transition: color 0.5s;
-  transition: color 0.5s;
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
 }
 .clear__btn::after {
   content: "";
@@ -105,8 +114,8 @@ header {
   width: 0;
   height: 2px;
   background-color: hsl(180deg, 29%, 50%);
-  -webkit-transition: width 0.5s;
-  transition: width 0.5s;
+  -webkit-transition: width 0.3s;
+  transition: width 0.3s;
 }
 .clear__btn:hover {
   color: hsl(180deg, 29%, 50%);
@@ -115,8 +124,97 @@ header {
   width: 100%;
 }
 
+.job {
+  position: relative;
+  max-width: 111rem;
+  padding: 2rem;
+  margin: 2rem;
+  border-radius: 0.5rem;
+  background-color: white;
+  -webkit-box-shadow: 0px 10px 40px -20px hsl(180deg, 29%, 50%);
+          box-shadow: 0px 10px 40px -20px hsl(180deg, 29%, 50%);
+}
+.job__logo {
+  position: absolute;
+  translate: 0 -100%;
+}
+.job__logo--img {
+  display: block;
+  width: 4rem;
+  height: 4rem;
+}
+.job__info {
+  margin-top: 1rem;
+}
+.job__info--company {
+  font-weight: 700;
+  margin-right: 1.5rem;
+  color: hsl(180deg, 29%, 50%);
+}
+.job__info--new, .job__info--featured {
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  padding: 0.7rem 0.7rem 0.5rem;
+  margin-right: 0.5rem;
+  border-radius: 100vw;
+  background-color: hsl(180deg, 29%, 50%);
+  color: white;
+}
+.job__info--featured {
+  background-color: black;
+}
+.job__info--role {
+  font-size: clamp(1.5rem, 2vw, 2.2rem);
+  font-weight: 700;
+  margin: 1rem 0;
+  cursor: pointer;
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
+}
+.job__info--role:hover {
+  color: hsl(180deg, 29%, 50%);
+}
+.job__info--description {
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid rgba(123, 142, 142, 0.3);
+  color: hsl(180deg, 8%, 52%);
+}
+.job__info--description span {
+  font-size: 2.3rem;
+  margin: 0 0.2rem;
+}
+.job__requirements {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-flow: wrap;
+      flex-flow: wrap;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+.job__requirements--requirement {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  color: hsl(180deg, 29%, 50%);
+  background-color: hsl(180deg, 31%, 95%);
+  -webkit-transition: color 0.3s, background-color 0.3s;
+  transition: color 0.3s, background-color 0.3s;
+}
+.job__requirements--requirement:hover {
+  color: white;
+  background-color: hsl(180deg, 29%, 50%);
+}
+
+.active {
+  display: block;
+}
+
 .hidden {
   display: none;
+}
+
+.featured {
+  border-left: 5px solid hsl(180deg, 29%, 50%);
 }
 
 /* FOOTER */
@@ -124,4 +222,69 @@ footer {
   text-align: center;
 }
 
-/* MEDIA QUERIES *//*# sourceMappingURL=style.css.map */
+/* MEDIA QUERIES */
+@media (min-width: 420px) {
+  header {
+    background-image: url(../images/bg-header-desktop.svg);
+    background-size: cover;
+  }
+}
+@media (min-width: 760px) {
+  .job {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    gap: 2.5rem;
+    padding: 3.5rem 4rem;
+    border-radius: 0.5rem;
+    background-color: white;
+  }
+  .job__logo {
+    position: relative;
+    translate: 0 0;
+  }
+  .job__logo--img {
+    width: 8.8rem;
+    height: 8.8rem;
+  }
+  .job__info {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 auto;
+            flex: 0 0 auto;
+    margin-top: 0;
+  }
+  .job__info--role {
+    margin-bottom: 0;
+  }
+  .job__info--description {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+  .job__info--description span {
+    margin: 0 1.5rem;
+  }
+  .job__requirements {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    margin-top: 0;
+  }
+}
+@media (min-width: 1150px) {
+  .filter-box {
+    margin: 0 auto;
+  }
+  .job {
+    margin: 2rem auto;
+  }
+}/*# sourceMappingURL=style.css.map */

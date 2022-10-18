@@ -1,8 +1,6 @@
 /* VARIABLES */
 @import './colors';
 
-// $heading-text-size: clamp(1.4rem, 1vw, 3rem);
-
 /* SITE */
 *,
 *::after,
@@ -19,8 +17,17 @@ html {
 
 body {
 	font-family: 'League Spartan', sans-serif;
+	font-size: clamp(1.5rem, 2vw, 1.7rem);
 	min-height: 100vh;
 	background-color: $light_grayish_cyan-background;
+}
+
+button {
+	font-family: 'League Spartan', sans-serif;
+	font-size: clamp(1.5rem, 2vw, 1.7rem);
+	font-weight: 700;
+	border: none;
+	cursor: pointer;
 }
 
 /* HEADER */
@@ -28,19 +35,21 @@ body {
 header {
 	height: 15.5rem;
 	background-image: url(../images/bg-header-mobile.svg);
+	background-size: cover;
 	background-color: $desaturated_dark_cyan;
 }
 
 /* SECTION */
 
 .filter-box {
-	font-size: 1.5rem;
+	// display: none;
 	position: relative;
 	top: -3rem;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	gap: 2rem;
+	max-width: 111rem;
 	margin: 0 2rem;
 	padding: 2rem;
 	border-radius: 0.5rem;
@@ -70,9 +79,14 @@ header {
 			display: inline-block;
 			height: 100%;
 			padding: 1rem;
+			border: none;
 			background-color: $desaturated_dark_cyan;
 			cursor: pointer;
-			transition: background-color 0.5s;
+			transition: background-color 0.3s;
+
+			img {
+				display: block;
+			}
 		}
 
 		&--icon:hover {
@@ -83,15 +97,10 @@ header {
 
 .clear {
 	&__btn {
-		font-family: 'League Spartan', sans-serif;
-		font-size: 1.5rem;
-		font-weight: 700;
 		padding: 0.6rem;
-		border: none;
 		background: none;
 		color: $dark_grayish_cyan;
-		cursor: pointer;
-		transition: color 0.5s;
+		transition: color 0.3s;
 	}
 
 	&__btn::after {
@@ -100,7 +109,7 @@ header {
 		width: 0;
 		height: 2px;
 		background-color: $desaturated_dark_cyan;
-		transition: width 0.5s;
+		transition: width 0.3s;
 	}
 
 	&__btn:hover {
@@ -112,8 +121,105 @@ header {
 	}
 }
 
+.job {
+	position: relative;
+	max-width: 111rem;
+	padding: 2rem;
+	margin: 2rem;
+	border-radius: 0.5rem;
+	background-color: white;
+	box-shadow: 0px 10px 40px -20px $desaturated_dark_cyan;
+
+	&__logo {
+		position: absolute;
+		translate: 0 -100%;
+
+		&--img {
+			display: block;
+			width: 4rem;
+			height: 4rem;
+		}
+	}
+
+	&__info {
+		margin-top: 1rem;
+
+		&--company {
+			font-weight: 700;
+			margin-right: 1.5rem;
+			color: $desaturated_dark_cyan;
+		}
+
+		&--new,
+		&--featured {
+			font-size: 1.3rem;
+			text-transform: uppercase;
+			padding: 0.7rem 0.7rem 0.5rem;
+			margin-right: 0.5rem;
+			border-radius: 100vw;
+			background-color: $desaturated_dark_cyan;
+			color: white;
+		}
+
+		&--featured {
+			background-color: black;
+		}
+
+		&--role {
+			font-size: clamp(1.5rem, 2vw, 2.2rem);
+			font-weight: 700;
+			margin: 1rem 0;
+			cursor: pointer;
+			transition: color 0.3s;
+		}
+
+		&--role:hover {
+			color: $desaturated_dark_cyan;
+		}
+
+		&--description {
+			padding-bottom: 1.5rem;
+			border-bottom: 2px solid rgba($dark_grayish_cyan, 0.3);
+			color: $dark_grayish_cyan;
+
+			span {
+				font-size: 2.3rem;
+				margin: 0 0.2rem;
+			}
+		}
+	}
+
+	&__requirements {
+		display: flex;
+		flex-flow: wrap;
+		gap: 2rem;
+		margin-top: 2rem;
+
+		&--requirement {
+			padding: 1rem;
+			border-radius: 0.5rem;
+			color: $desaturated_dark_cyan;
+			background-color: $light_grayish_cyan-filter-tablets;
+			transition: color 0.3s, background-color 0.3s;
+		}
+
+		&--requirement:hover {
+			color: white;
+			background-color: $desaturated_dark_cyan;
+		}
+	}
+}
+
+.active {
+	display: block;
+}
+
 .hidden {
 	display: none;
+}
+
+.featured {
+	border-left: 5px solid $desaturated_dark_cyan;
 }
 
 /* FOOTER */
@@ -124,5 +230,65 @@ footer {
 
 /* MEDIA QUERIES */
 
-@media (min-width: 500px) {
+@media (min-width: 420px) {
+	header {
+		background-image: url(../images/bg-header-desktop.svg);
+		background-size: cover;
+	}
+}
+
+@media (min-width: 760px) {
+	.job {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: 2.5rem;
+		padding: 3.5rem 4rem;
+		border-radius: 0.5rem;
+		background-color: white;
+
+		&__logo {
+			position: relative;
+			translate: 0 0;
+
+			&--img {
+				width: 8.8rem;
+				height: 8.8rem;
+			}
+		}
+
+		&__info {
+			flex: 0 0 auto;
+			margin-top: 0;
+
+			&--role {
+				margin-bottom: 0;
+			}
+
+			&--description {
+				border-bottom: 0;
+				padding-bottom: 0;
+
+				span {
+					margin: 0 1.5rem;
+				}
+			}
+		}
+
+		&__requirements {
+			flex: 1 1 auto;
+			justify-content: flex-end;
+			margin-top: 0;
+		}
+	}
+}
+
+@media (min-width: 1150px) {
+	.filter-box {
+		margin: 0 auto;
+	}
+
+	.job {
+		margin: 2rem auto;
+	}
 }
