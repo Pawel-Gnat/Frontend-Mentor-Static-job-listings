@@ -1,19 +1,32 @@
 'use strict'
 const JSON_SOURCE = './data.json'
 const listOfJobs = document.querySelector('.job-listing')
+const filterBox = document.querySelector('.filter')
+const techStackButtons = document.getElementsByClassName('job__requirements--requirement')
 
 async function renderData() {
 	try {
 		const res = await fetch(JSON_SOURCE)
 		const data = await res.json()
-		// console.log(...data)
-		// console.log(object.entries(...data))
 
 		for (let job of data) {
-			// console.log(job)
-			let id = job.id
+			const {
+				id,
+				company,
+				logo,
+				['new']: newjob,
+				featured,
+				position,
+				role,
+				level,
+				postedAt,
+				contract,
+				location,
+				languages,
+				tools,
+			} = job
 
-			console.log(id)
+			jobOffer(job)
 		}
 	} catch {
 		console.error("Can't fetch data from a file")
@@ -21,26 +34,78 @@ async function renderData() {
 }
 renderData()
 
-function jobOffer({ id, images, company, role, postedAt, contract, location, requirement }) {
+function jobOffer({
+	id,
+	company,
+	logo,
+	['new']: newjob,
+	featured,
+	position,
+	role,
+	level,
+	postedAt,
+	contract,
+	location,
+	languages,
+	tools,
+}) {
 	const newJob = document.createElement('article')
 	newJob.classList.add('job')
 	newJob.dataset.id = `${id}`
 
+	let requirement = [role, level, ...languages, ...tools]
+
 	newJob.innerHTML = `
 	<div class="job__logo">
-		<img src="${images}" class="job__logo--img" alt="" aria-hidden="true">
+		<img src="${logo}" class="job__logo--img" alt="" aria-hidden="true">
 	</div>
 	<div class="job__info">
 		<span class="job__info--company">${company}</span>
-		<span class="job__info--new">new!</span>
-		<span class="job__info--featured">featured</span>
-		<p class="job__info--role">${role}</p>
+		${checkNewState(newjob)}
+		${checkFeature(featured)}
+		<p class="job__info--position">${position}</p>
 		<p class="job__info--description">${postedAt}<span>&middot;</span>${contract}<span>&middot;</span>${location}</p>
 	</div>
 	<div class="job__requirements">
-		<button type="button" class="job__requirements--requirement">${requirement}</button>
+		${addTechStack(requirement)}
 	</div>
 	`
-
 	listOfJobs.append(newJob)
 }
+
+function addTechStack(elements) {
+	return elements
+		.map(element => `<button type="button" class="job__requirements--requirement">${element}</button>`)
+		.join('')
+}
+
+function checkNewState(newjob) {
+	return newjob ? `<span class="job__info--new" data-new=${newjob}>new!</span>` : ''
+}
+
+function checkFeature(feature) {
+	return feature ? `<span class="job__info--featured" data-featured=${feature}>featured</span>` : ''
+}
+
+function addFeaturedBorder() {
+	const featuredJobsText = document.getElementsByClassName('job__info--featured')
+	let text = [...featuredJobsText]
+	console.log(text)
+	console.log(featuredJobsText)
+}
+addFeaturedBorder()
+
+function filterJobs(e) {
+	return console.log(e.target)
+}
+
+// ;[...techStackButtons].forEach(btn => btn.addEventListener('click', filterJobs))
+
+let btns = [...techStackButtons]
+console.log(btns)
+
+btns.forEach(btn =>
+	btn.addEventListener('click', function () {
+		console.log('lol')
+	})
+)
