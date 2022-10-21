@@ -43,7 +43,7 @@ header {
 
 .filter-box {
 	display: none;
-	display: flex;
+	// display: flex;
 	justify-content: space-between;
 	align-items: center;
 	gap: 2rem;
@@ -62,7 +62,7 @@ header {
 	flex-flow: wrap;
 	gap: 2rem;
 
-	&__language {
+	&__stack {
 		display: flex;
 		align-items: center;
 		border-radius: 0.5rem;
@@ -212,6 +212,10 @@ header {
 
 .job:nth-child(1) {
 	margin-top: 5rem;
+}
+
+.display {
+	display: flex;
 }
 
 .active {

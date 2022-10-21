@@ -40,9 +40,6 @@ header {
 /* SECTION */
 .filter-box {
   display: none;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -69,7 +66,7 @@ header {
       flex-flow: wrap;
   gap: 2rem;
 }
-.filter__language {
+.filter__stack {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -80,12 +77,12 @@ header {
   background-color: hsl(180deg, 31%, 95%);
   overflow: hidden;
 }
-.filter__language--text {
+.filter__stack--text {
   font-weight: 700;
   padding: 0 1rem;
   color: hsl(180deg, 29%, 50%);
 }
-.filter__language--icon {
+.filter__stack--icon {
   display: inline-block;
   height: 100%;
   padding: 1rem;
@@ -95,10 +92,10 @@ header {
   -webkit-transition: background-color 0.3s;
   transition: background-color 0.3s;
 }
-.filter__language--icon img {
+.filter__stack--icon img {
   display: block;
 }
-.filter__language--icon:hover {
+.filter__stack--icon:hover {
   background-color: black;
 }
 
@@ -208,6 +205,12 @@ header {
 
 .job:nth-child(1) {
   margin-top: 5rem;
+}
+
+.display {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .active {
