@@ -2,6 +2,7 @@ const filterBox = document.querySelector('.filter-box')
 const filteredStacksContainer = filterBox.querySelector('.filter')
 const listOfJobs = document.querySelector('.job-listing')
 const clearBox = document.querySelector('.clear')
+let currentFilteredStacks = []
 
 function displayFilterBox(box) {
 	const chosenTechStack = Array.from(document.getElementsByClassName('filter__stack'))
@@ -16,10 +17,11 @@ function displayFilterBox(box) {
 function filterJobs(e) {
 	let target = e.target.closest('button')
 
-	if (target) {
+	if (target && !currentFilteredStacks.includes(target.textContent)) {
 		selectTechStack(target.textContent)
 		filter(target.textContent)
 		displayFilterBox(filterBox)
+		currentFilteredStacks.push(target.textContent)
 	}
 }
 
@@ -40,9 +42,16 @@ function selectTechStack(stack) {
 function deleteTechStack(e) {
 	if (e.target.closest('button')) {
 		let selectedStack = e.target.closest('div')
+		let stackName = selectedStack.children[0].textContent
 		selectedStack.remove()
 		displayFilterBox(filterBox)
+		removeStackFromArray(currentFilteredStacks, stackName)
 	}
+}
+
+function removeStackFromArray(array, value) {
+	const index = array.indexOf(value)
+	return array.splice(index, 1)
 }
 
 displayFilterBox(filterBox)
