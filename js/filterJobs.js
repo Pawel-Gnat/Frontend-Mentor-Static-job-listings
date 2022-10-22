@@ -1,7 +1,6 @@
 const filterBox = document.querySelector('.filter-box')
 const filteredStacksContainer = filterBox.querySelector('.filter')
 const listOfJobs = document.querySelector('.job-listing')
-const clearBox = document.querySelector('.clear')
 let currentFilteredStacks = []
 
 function displayFilterBox(box) {
@@ -14,14 +13,14 @@ function displayFilterBox(box) {
 	}
 }
 
-function filterJobs(e) {
+function addStackToFilter(e) {
 	let target = e.target.closest('button')
 
 	if (target && !currentFilteredStacks.includes(target.textContent)) {
 		selectTechStack(target.textContent)
-		filter(target.textContent)
 		displayFilterBox(filterBox)
 		currentFilteredStacks.push(target.textContent)
+		filterJobs()
 	}
 }
 
@@ -39,13 +38,26 @@ function selectTechStack(stack) {
 	filteredStacksContainer.append(techStack)
 }
 
-function deleteTechStack(e) {
-	if (e.target.closest('button')) {
+function deleteStack(e) {
+	if (e.target.closest('button').className == 'filter__stack--icon') {
 		let selectedStack = e.target.closest('div')
 		let stackName = selectedStack.children[0].textContent
+
 		selectedStack.remove()
 		displayFilterBox(filterBox)
 		removeStackFromArray(currentFilteredStacks, stackName)
+		filterJobs()
+	}
+
+	if (e.target.closest('button').className == 'clear__btn') {
+		let filteredStacks = Array.from(document.getElementsByClassName('filter__stack'))
+		let allJobs = Array.from(document.getElementsByClassName('job'))
+
+		allJobs.forEach(job => job.classList.remove('hidden'))
+		filteredStacks.forEach(el => el.remove())
+
+		displayFilterBox(filterBox)
+		currentFilteredStacks = []
 	}
 }
 
@@ -54,24 +66,26 @@ function removeStackFromArray(array, value) {
 	return array.splice(index, 1)
 }
 
-displayFilterBox(filterBox)
-listOfJobs.addEventListener('click', filterJobs)
-filteredStacksContainer.addEventListener('click', deleteTechStack)
-
-/* implement filter function here */
-
-function filter(requirement) {
+function filterJobs() {
 	const allRequirements = Array.from(document.getElementsByClassName('job__requirements'))
+	let jobStacks = []
 
-	allRequirements.forEach(el => {
-		const parentContainer = el.parentElement
-		const requirements = [...el.children]
+	allRequirements.forEach(jobRequirement => {
+		const parentContainer = jobRequirement.parentElement
+		const requirements = [...jobRequirement.children]
+
+		requirements.forEach(el => jobStacks.push(el.textContent))
+
 		parentContainer.classList.add('hidden')
 
-		const filteredJobs = requirements.filter(stack => {
-			if (stack.dataset.stack == requirement) {
-				parentContainer.classList.remove('hidden')
-			}
-		})
+		if (currentFilteredStacks.every(stack => jobStacks.includes(stack))) {
+			parentContainer.classList.remove('hidden')
+		}
+
+		jobStacks = []
 	})
 }
+
+displayFilterBox(filterBox)
+listOfJobs.addEventListener('click', addStackToFilter)
+filterBox.addEventListener('click', deleteStack)
