@@ -29,7 +29,7 @@ export function jobOffer({
 		<span class="job__info--company">${company}</span>
 		${checkNewState(newjob)}
 		${checkFeature(featured)}
-		<p class="job__info--position">${position}</p>
+		<h2 class="job__info--position">${position}</h2>
 		<p class="job__info--description">${postedAt}<span>&middot;</span>${contract}<span>&middot;</span>${location}</p>
 	</div>
 	<div class="job__requirements">
