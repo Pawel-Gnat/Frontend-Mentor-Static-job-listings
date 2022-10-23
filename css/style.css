@@ -124,6 +124,9 @@ header {
 
 .job {
   position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   max-width: 111rem;
   padding: 2rem;
   margin: 4rem 2rem 2rem;
@@ -239,9 +242,6 @@ footer {
 }
 @media (min-width: 760px) {
   .job {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
